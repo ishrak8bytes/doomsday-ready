@@ -209,8 +209,53 @@ The whole project is structured as:
 └── README.md
 
 21 directories, 55 files
-
 ```
+
+## Running Without Docker (Development)
+
+Requires Node.js 22+ and Docker (only for the database).
+
+**1. Start the database**
+
+```bash
+docker compose up -d postgres
+```
+
+**2. Backend**
+
+```bash
+cd backend
+npm install
+```
+
+Create `backend/.env`:
+
+```env
+PORT=3000
+DATABASE_URL=postgresql://doomsdayapp:doomsdayapp_password@localhost:5432/doomsdayapp
+```
+
+Seed the database (creates the tables and loads the data; safe to run more than once), then start the server:
+
+```bash
+npx tsx src/utils/seed.ts
+npm run dev
+```
+
+The API runs at http://localhost:3000.
+
+**3. Frontend**
+
+In a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open http://localhost:5173. The Vite dev server proxies `/api` requests to the backend on port 3000.
+
 
 ## Possible improvements
  
