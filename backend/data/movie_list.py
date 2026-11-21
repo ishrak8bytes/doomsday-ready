@@ -1,0 +1,41 @@
+marvel_movies = [
+    # Original MCU / Avengers storyline
+    "Iron Man",
+    "Iron Man 2",
+    "Thor",
+    "Captain America: The First Avenger",
+    "The Avengers",
+    "Iron Man 3",
+    "Thor: The Dark World",
+    "Captain America: The Winter Soldier",
+    "Avengers: Age of Ultron",
+    "Ant-Man",
+    "Captain America: Civil War",
+    "Doctor Strange",
+    "Thor: Ragnarok",
+    "Black Panther",
+    "Avengers: Infinity War",
+    "Ant-Man and the Wasp",
+    "Avengers: Endgame",
+
+    # Multiverse Saga
+    "Shang-Chi and the Legend of the Ten Rings",
+    "Doctor Strange in the Multiverse of Madness",
+    "Black Panther: Wakanda Forever",
+    "Ant-Man and the Wasp: Quantumania",
+    "The Marvels",
+    "Deadpool & Wolverine",
+    "Captain America: Brave New World",
+    "Thunderbolts*",
+    "The Fantastic Four: First Steps",
+    # X-Men / Fox universe
+    "X-Men",
+    "X2: X-Men United",
+    "X-Men: The Last Stand",
+    "X-Men: Days of Future Past",
+    "X-Men: Apocalypse",
+    "Dark Phoenix",
+    "Deadpool",
+    "Deadpool 2",
+    "Logan"
+]

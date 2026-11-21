@@ -1,0 +1,55 @@
+services:
+  seed:
+    build: ./backend
+    command: ["node", "dist/utils/seed.js"]
+    environment: &backend-env
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: doomsdayapp
+      DB_PASSWORD: doomsdayapp_password
+      DB_NAME: doomsdayapp
+      DATABASE_URL: postgresql://doomsdayapp:doomsdayapp_password@postgres:5432/doomsdayapp
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  backend:
+    build: ./backend
+    init: true
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      <<: *backend-env
+      PORT: 3000
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: doomsday-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: doomsdayapp
+      POSTGRES_PASSWORD: doomsdayapp_password
+      POSTGRES_DB: doomsdayapp
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U doomsdayapp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres-data:
